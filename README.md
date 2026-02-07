@@ -2,6 +2,31 @@
 
 Система бронирования отелей с GraphQL API на Node.js + Apollo Server + TypeScript.
 
+## 🚀 Быстрый старт
+
+### С Docker (если установлен)
+
+```bash
+git clone https://github.com/Yaroslavgiv/hotel-booking-back.git
+cd hotel-booking-back
+docker compose up --build
+```
+
+API будет доступно на: **http://localhost:4001/graphql**
+
+### Без Docker (локально)
+
+```bash
+git clone https://github.com/Yaroslavgiv/hotel-booking-back.git
+cd hotel-booking-back
+npm install
+npm run dev
+```
+
+API будет доступно на: **http://localhost:4001/graphql**
+
+> **Примечание:** Для работы с Docker необходимо установить [Docker Desktop](https://www.docker.com/products/docker-desktop/). Если Docker не установлен, используйте локальный запуск.
+
 ## Технологии
 
 - **Node.js** + **TypeScript**
