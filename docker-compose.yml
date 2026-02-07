@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hotel-booking-backend
+    ports:
+      - "4001:4001"
+    environment:
+      - PORT=4001
+      - DATABASE_PATH=/app/data/hotel_booking.db
+      - LOG_LEVEL=info
+      - NODE_ENV=production
+    volumes:
+      # Монтируем директорию для базы данных (чтобы данные сохранялись)
+      - ./data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:4001/graphql", "||", "exit", "1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

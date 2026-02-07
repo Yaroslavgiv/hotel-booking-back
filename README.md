@@ -11,6 +11,7 @@
 - **Winston** (логирование)
 - **Express** (HTTP сервер)
 - **Jest** (тестирование)
+- **Docker** + **Docker Compose** (контейнеризация)
 
 ## Архитектура
 
@@ -47,17 +48,58 @@ npm install
 
 ## Запуск
 
-### Разработка
+### Docker (Рекомендуется)
+
+Самый простой способ запустить проект - использовать Docker Compose:
 
 ```bash
+docker compose up --build
+```
+
+**Порты и URL:**
+- **Backend API:** `http://localhost:4001/graphql`
+- **GraphQL Endpoint:** `http://localhost:4001/graphql`
+
+**Доступ к GraphQL API:**
+- Откройте браузер и перейдите по адресу `http://localhost:4001/graphql`
+- Или используйте любой GraphQL клиент (Postman, Insomnia, GraphQL Playground)
+- Для тестирования можно использовать curl или любой HTTP клиент
+
+**Пример запроса:**
+```bash
+curl -X POST http://localhost:4001/graphql \
+  -H "Content-Type: application/json" \
+  -d '{"query":"{ hotels { id name } }"}'
+```
+
+**Остановка:**
+```bash
+docker compose down
+```
+
+**Очистка данных (удаление базы данных):**
+```bash
+docker compose down -v
+rm -rf data/
+```
+
+База данных сохраняется в директории `./data/` на хосте для персистентности данных.
+
+### Локальная разработка
+
+#### Разработка
+
+```bash
+npm install
 npm run dev
 ```
 
 Сервер автоматически запустится на `http://localhost:4001/graphql` (порт можно изменить через переменную окружения `PORT`).
 
-### Продакшн
+#### Продакшн
 
 ```bash
+npm install
 npm run build
 npm start
 ```
