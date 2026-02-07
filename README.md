@@ -411,28 +411,4 @@ DATABASE_PATH=./hotel_booking.db
 LOG_LEVEL=info
 ```
 
-## Устранение проблем
 
-### Порт уже занят (EADDRINUSE)
-
-Если получаете ошибку `EADDRINUSE: address already in use :::4001`:
-
-1. Найдите процесс, занимающий порт:
-   ```powershell
-   netstat -ano | findstr :4001
-   ```
-
-2. Завершите процесс по PID:
-   ```powershell
-   taskkill /PID <PID> /F
-   ```
-
-3. Или измените порт через переменную окружения `PORT`.
-
-### База данных не создается
-
-Убедитесь, что у приложения есть права на запись в директорию проекта (для создания файла `hotel_booking.db`).
-
-## Лицензия
-
-ISC
